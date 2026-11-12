@@ -57,26 +57,24 @@ h1 {
 
 h2 { margin: 0 0 16px; font-size: 2.2rem; }
 
-/* Galería en paneles de cómic */
-.paneles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+/* Galería en paneles de cómic: 3 por fila, todos del mismo tamaño */
+.paneles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .panel {
   margin: 0;
   background: var(--papel);
   border: 5px solid var(--tinta);
   box-shadow: 6px 6px 0 var(--tinta);
+  overflow: hidden;
 }
-.panel:nth-child(2) { background: var(--cielo); }
-.panel:nth-child(3) { background: var(--chicle); }
-.espacio {
-  min-height: 180px;
-  display: flex; align-items: center; justify-content: center;
-  padding: 12px;
-  font-family: "Bangers", Impact, sans-serif;
-  font-size: 1.8rem;
-  text-align: center;
+.panel img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  object-position: center;
 }
-.panel img { display: block; width: 100%; height: auto; }
-.panel figcaption { padding: 8px 12px; border-top: 4px solid var(--tinta); background: var(--papel); }
+.panel img[src$="ilustracion-3.jpg"] { object-position: 68% center; }
 
 /* Botones de redes */
 .redes { display: flex; flex-wrap: wrap; gap: 20px; }
@@ -99,7 +97,7 @@ h2 { margin: 0 0 16px; font-size: 2.2rem; }
 footer { font-size: 1rem; }
 
 @media (max-width: 520px) {
-  .paneles { grid-template-columns: 1fr; }
+  .paneles { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; }
   .boton { flex: 1 1 100%; text-align: center; }
 }
 @media (prefers-reduced-motion: reduce) { .boton { transition: none; } }
